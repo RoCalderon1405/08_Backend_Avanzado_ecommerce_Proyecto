@@ -1,0 +1,23 @@
+{
+  "name": "08_backend_avanzado_ecommerce",
+  "version": "1.0.0",
+  "description": "Proyecto Backend Avanzado Ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon backend/server.js"
+  },
+  "author": "CART",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
