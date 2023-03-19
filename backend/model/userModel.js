@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        // select: false  // La propiedad "password" no se incluirá en ninguna consulta
     },
     address: {
         type: String,

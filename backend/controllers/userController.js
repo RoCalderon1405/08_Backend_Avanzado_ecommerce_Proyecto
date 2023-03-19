@@ -109,15 +109,12 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     //verificamos que el user de la tarea sea igual que el user del token
-    // console.log(usuario.id)
-    // console.log(req.user.id)
     if (usuario.id !== req.user.id) {
         res.status(401)
         throw new Error('Acceso no autorizado')
     }
 
     const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
-
     res.status(200).json(updatedUser)
 })
 
@@ -141,9 +138,38 @@ const dataUser = asyncHandler(async (req, res) => {
     })
 })
 
+const dataAllUser = asyncHandler(async (req, res) => {
+    const usuarios = await User.find()
+    res.status(200).json(usuarios)
+})
+
+const deleteUser = asyncHandler(async (req, res) => {
+
+    const usuario = await User.findById(req.params.id).select('-address -role -phoneNumber -createdAt -updatedAt -__v -password')
+
+    if (!usuario) {
+        res.status(400)
+        throw new Error('Usuario no encontrado')
+    }
+
+    if(usuario.id !== req.user.id) {
+        res.status(401)
+        throw new Error('Acceso no autorizado')
+    }
+
+    const deletedUser = await User.findByIdAndDelete(req.params.id)
+
+    res.status(200).json({
+        usuario,
+        Success: 'Usuario Eliminado'
+    })
+})
+
 module.exports = {
     registerUser,
     loginUser,
     updateUser,
-    dataUser
+    dataUser,
+    dataAllUser,
+    deleteUser
 }
