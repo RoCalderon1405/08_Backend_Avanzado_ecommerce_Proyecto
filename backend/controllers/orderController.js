@@ -64,17 +64,22 @@ const setOrder = asyncHandler(async (req, res) => {
     }
 })
 
-const updateProduct = asyncHandler(async (req, res) => {
+const updateOrder = asyncHandler(async (req, res) => {
 
-    const product = await Product.findById(req.params.id)
+    const orden = await Order.findById(req.params.id)
 
-    if (!product) {
+    if (!orden) {
         res.status(400)
-        throw new Error('Producto no encontrado')
+        throw new Error('Orden no encontrada')
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    res.status(200).json(updatedProduct)
+    const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    console.log(req.params.id)
+    console.log(updatedOrder)
+    console.log(req.body)
+    
+
+    res.status(200).json(updatedOrder)
 })
 
 const getOneProduct = asyncHandler(async (req, res) => {
@@ -120,7 +125,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 module.exports = {
     setOrder,
-    updateProduct,
+    updateOrder,
     getOneProduct,
     getProducts,
     deleteProduct
