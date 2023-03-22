@@ -78,51 +78,49 @@ const updateOrder = asyncHandler(async (req, res) => {
     res.status(200).json(updatedOrder)
 })
 
-const getOneProduct = asyncHandler(async (req, res) => {
+const getOneOrder = asyncHandler(async (req, res) => {
 
-    const product = await Product.findOne({ _id: req.params.id })
+    const orden = await Order.findOne({ _id: req.params.id })
 
-    if (!product) {
+    if (!orden) {
         res.status(400)
-        throw new Error('Producto no encontrado')
+        throw new Error('Orden no encontrada')
     }
-    res.status(200).json(product)
+    res.status(200).json(orden)
 })
 
-const getProducts = asyncHandler(async (req, res) => {
+const getOrders = asyncHandler(async (req, res) => {
 
-    const product = await Product.find()
+    const orden = await Order.find()
 
-    if (!product) {
+    if (!orden) {
         res.status(400)
-        throw new Error('No hay ningún producto registrado')
+        throw new Error('No tiene ningúna orden registrada')
     }
-    res.status(200).json(product)
+    res.status(200).json(orden)
 })
 
+const deleteOrder = asyncHandler(async (req, res) => {
 
+    const orden = await Order.findById(req.params.id)
 
-const deleteProduct = asyncHandler(async (req, res) => {
-
-    const product = await Product.findById(req.params.id)
-
-    if (!product) {
+    if (!orden) {
         res.status(400)
-        throw new Error('Producto no encontrado')
+        throw new Error('Orden no encontrada')
     }
 
-    const deletedProduct = await Product.findByIdAndDelete(req.params.id)
+    const deletedOrden = await Order.findByIdAndDelete(req.params.id)
 
     res.status(200).json({
-        product,
-        Success: 'Producto eliminado exitosamente.'
+        deletedOrden,
+        Success: 'Orden eliminadoa exitosamente.'
     })
 })
 
 module.exports = {
     setOrder,
     updateOrder,
-    getOneProduct,
-    getProducts,
-    deleteProduct
+    getOneOrder,
+    getOrders,
+    deleteOrder
 }

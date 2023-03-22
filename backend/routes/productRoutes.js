@@ -11,7 +11,7 @@ const { isAdmin, protect } = require('../middleware/authMiddleware')
 
 router.get('/getOneProduct/:id', getOneProduct)
 router.get('/getProducts/', getProducts)
-router.post('/register', registerProduct)
+router.post('/register', isAdmin, registerProduct)
 router.put('/update/:id', protect, isAdmin, updateProduct)
 router.delete('/delete/:id', protect, isAdmin, deleteProduct)
 

@@ -16,6 +16,12 @@ const protect = asyncHandler(async (req, res, next) => {
 
             //obtenemos los datos del usuario del mismo token
             req.user = await User.findById(decoded.id).select('-password')
+
+            // Permitimos el acceso si el usuario es un administrador
+            if (req.user.role === 'ADMIN') {
+                return next()
+              }
+              
             next()
         } catch (error) {
             console.log(error)
