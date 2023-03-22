@@ -2,7 +2,7 @@
   "name": "08_backend_avanzado_ecommerce",
   "version": "1.0.0",
   "description": "Proyecto Backend Avanzado Ecommerce",
-  "main": "server.js",
+  "main": "backend/server.js",
   "scripts": {
     "server": "nodemon backend/server.js"
   },
