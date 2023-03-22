@@ -20,8 +20,10 @@ const protect = asyncHandler(async (req, res, next) => {
             // Permitimos el acceso si el usuario es un administrador
             if (req.user.role === 'ADMIN') {
                 return next()
-              }
-              
+            }
+
+            // Si no es un administrador, continua con la verificación normal
+
             next()
         } catch (error) {
             console.log(error)
@@ -44,7 +46,7 @@ const isAdmin = asyncHandler(async (req, res, next) => {
     } else {
         res.status(401);
         throw new Error('No autorizado como administrador');
-      }
+    }
 
 })
 
