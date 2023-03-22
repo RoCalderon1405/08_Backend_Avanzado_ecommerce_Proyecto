@@ -73,11 +73,7 @@ const updateOrder = asyncHandler(async (req, res) => {
         throw new Error('Orden no encontrada')
     }
 
-    const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    console.log(req.params.id)
-    console.log(updatedOrder)
-    console.log(req.body)
-    
+    const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true })    
 
     res.status(200).json(updatedOrder)
 })
